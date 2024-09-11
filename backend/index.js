@@ -17,6 +17,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api', router);
+//def route
+app.get('/', (req, res) => {
+  return res.json({
+    success: true,
+    message: 'Your BestBuyShop server is up and running....',
+  });
+});
 
 const PORT = 8080 || process.env.PORT;
 
