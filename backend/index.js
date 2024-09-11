@@ -9,8 +9,9 @@ const app = express();
 app.use(
   cors({
     origin: 'https://best-buy-shope-krgy.vercel.app/',
-    methods: 'GET, POST, PUT, DELETE',
+     methods: 'GET, POST, PUT, DELETE',
     credentials: true,
+     allowedHeaders: 'Content-Type, Authorization',
   })
 );
 app.use(express.json());
