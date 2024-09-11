@@ -6,14 +6,13 @@ const connectDB = require('./config/db');
 const router = require('./routes');
 
 const app = express();
-app.use(cors());
-// app.use(
-//   cors({
-//     origin: process.env.FRONTEND_URL,
-//     methods: 'GET,POST,PUT,DELETE',
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: 'https://best-buy-shope-krgy.vercel.app/',
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
