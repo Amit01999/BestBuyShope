@@ -8,12 +8,15 @@ const router = require('./routes');
 const app = express();
 app.use(
   cors({
-    origin: 'https://best-buy-shope-krgy.vercel.app/',
-    methods: 'GET, POST, PUT, DELETE',
+    origin: 'https://best-buy-shope-krgy.vercel.app', // No trailing slash
+    methods: 'GET, POST, PUT, DELETE, OPTIONS', // Add OPTIONS
     credentials: true,
     allowedHeaders: 'Content-Type, Authorization',
   })
 );
+
+// Explicitly handle OPTIONS requests (CORS preflight requests)
+app.options('*', cors());
 app.use(express.json());
 app.use(cookieParser());
 
