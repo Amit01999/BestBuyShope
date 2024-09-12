@@ -29,6 +29,7 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log('login function clicked');
 
     const dataResponse = await fetch(SummaryApi.signIn.url, {
       method: SummaryApi.signIn.method,
@@ -40,6 +41,7 @@ const Login = () => {
     });
 
     const dataApi = await dataResponse.json();
+    console.log('login apidata :', dataApi);
 
     if (dataApi.success) {
       toast.success(dataApi.message);
