@@ -19,6 +19,9 @@ function App() {
     const dataResponse = await fetch(SummaryApi.current_user.url, {
       method: SummaryApi.current_user.method,
       credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
 
     const dataApi = await dataResponse.json();

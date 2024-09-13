@@ -44,6 +44,7 @@ const Login = () => {
     console.log('login apidata :', dataApi);
 
     if (dataApi.success) {
+      localStorage.setItem('token', dataApi.token);
       toast.success(dataApi.message);
       navigate('/');
       fetchUserDetails();
