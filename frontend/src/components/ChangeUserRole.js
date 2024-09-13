@@ -18,7 +18,7 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
       method: SummaryApi.updateUser.method,
       credentials: 'include',
       headers: {
-        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
         userId: userId,

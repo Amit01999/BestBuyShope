@@ -68,7 +68,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
       method: SummaryApi.uploadProduct.method,
       credentials: 'include',
       headers: {
-        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify(data),
     });

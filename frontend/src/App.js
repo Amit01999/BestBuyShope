@@ -25,7 +25,6 @@ function App() {
     });
 
     const dataApi = await dataResponse.json();
-    console.log('app fetch user deatles :', dataApi);
 
     if (dataApi.success) {
       dispatch(setUserDetails(dataApi.data));

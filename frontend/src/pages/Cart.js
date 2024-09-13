@@ -15,7 +15,7 @@ const Cart = () => {
       method: SummaryApi.addToCartProductView.method,
       credentials: 'include',
       headers: {
-        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
 
@@ -41,7 +41,7 @@ const Cart = () => {
       method: SummaryApi.updateCartProduct.method,
       credentials: 'include',
       headers: {
-        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
         _id: id,
@@ -62,7 +62,7 @@ const Cart = () => {
         method: SummaryApi.updateCartProduct.method,
         credentials: 'include',
         headers: {
-          'content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
           _id: id,
@@ -83,7 +83,7 @@ const Cart = () => {
       method: SummaryApi.deleteCartProduct.method,
       credentials: 'include',
       headers: {
-        'content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
         _id: id,
