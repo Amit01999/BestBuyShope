@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 async function authToken(req, res, next) {
   try {
     console.log('auth middleware activated');
-    const token = req.body.token;
+    const token = req.headers.authorization?.split(' ')[1]; // Extract 'Bearer <token>'
 
     //  const token = req.cookies.token ||  req.body.token || req.header('Authorization').replace('Bearer ', '');
 

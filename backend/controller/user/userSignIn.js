@@ -45,12 +45,11 @@ async function userSignInController(req, res) {
     });
 
     // Cookie options
-    const tokenOptions = {
-      //create cookie and send response
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
-    };
-
+    // const tokenOptions = {
+    //   //create cookie and send response
+    //   expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+    //   httpOnly: true,
+    // };
     // Send token in the response body
     res.status(200).json({
       message: 'Login successful',
