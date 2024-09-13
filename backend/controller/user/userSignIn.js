@@ -44,12 +44,6 @@ async function userSignInController(req, res) {
       expiresIn: '8h',
     });
 
-    // Cookie options
-    // const tokenOptions = {
-    //   //create cookie and send response
-    //   expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-    //   httpOnly: true,
-    // };
     // Send token in the response body
     res.status(200).json({
       message: 'Login successful',
@@ -57,15 +51,6 @@ async function userSignInController(req, res) {
       success: true,
       error: false,
     });
-
-    // Set cookie and respond
-    // res.cookie('token', token, tokenOptions).status(200).json({
-    //   message: 'Login successful',
-    //   user,
-    //   token,
-    //   success: true,
-    //   error: false,
-    // });
   } catch (err) {
     res.status(500).json({
       message: err.message || 'Internal server error',

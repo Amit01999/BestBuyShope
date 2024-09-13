@@ -36,6 +36,9 @@ function App() {
     const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
       method: SummaryApi.addToCartProductCount.method,
       credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
 
     const dataApi = await dataResponse.json();
