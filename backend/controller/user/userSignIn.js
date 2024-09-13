@@ -51,14 +51,22 @@ async function userSignInController(req, res) {
       httpOnly: true,
     };
 
-    // Set cookie and respond
-    res.cookie('token', token, tokenOptions).status(200).json({
+    // Send token in the response body
+    res.status(200).json({
       message: 'Login successful',
-      user,
-      token,
+      token, // Send the token in the body
       success: true,
       error: false,
     });
+
+    // Set cookie and respond
+    // res.cookie('token', token, tokenOptions).status(200).json({
+    //   message: 'Login successful',
+    //   user,
+    //   token,
+    //   success: true,
+    //   error: false,
+    // });
   } catch (err) {
     res.status(500).json({
       message: err.message || 'Internal server error',
