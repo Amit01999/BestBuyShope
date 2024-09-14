@@ -32,6 +32,7 @@ const Header = () => {
     const data = await fetchData.json();
 
     if (data.success) {
+      localStorage.removeItem('token');
       toast.success(data.message);
       dispatch(setUserDetails(null));
       navigate('/');
