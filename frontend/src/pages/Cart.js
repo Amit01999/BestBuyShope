@@ -11,6 +11,7 @@ const Cart = () => {
   const loadingCart = new Array(4).fill(null);
 
   const fetchData = async () => {
+    console.log('before api call addto cart  view hit');
     const response = await fetch(SummaryApi.addToCartProductView.url, {
       method: SummaryApi.addToCartProductView.method,
       credentials: 'include',
@@ -20,6 +21,7 @@ const Cart = () => {
     });
 
     const responseData = await response.json();
+    console.log('after api call addto cart responsedata :', responseData);
 
     if (responseData.success) {
       setData(responseData.data);
@@ -130,42 +132,56 @@ const Cart = () => {
                 return (
                   <div
                     key={product?._id + 'Add To Cart Loading'}
-                    className="w-full bg-white h-32 my-2 border border-slate-300  rounded grid grid-cols-[128px,1fr]"
+                    className="w-full bg-white h-32 my-2 border border-slate-300 rounded grid grid-cols-[128px,1fr]"
                   >
                     <div className="w-32 h-32 bg-slate-200">
-                      <img
-                        src={product?.productId?.productImage[0]}
-                        className="w-full h-full object-scale-down mix-blend-multiply"
-                      />
+                      {product?.productId?.productImage && (
+                        <img
+                          src={product?.productId?.productImage[0]}
+                          className="w-full h-full object-scale-down mix-blend-multiply"
+                        />
+                      )}
                     </div>
                     <div className="px-4 py-2 relative">
                       {/**delete product */}
                       <div
-                        className="absolute right-0 text-[#14919A] rounded-full p-2 hover:bg-[#14919A] hover:text-white cursor-pointer"
+                        className="absolute right-0 text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer"
                         onClick={() => deleteCartProduct(product?._id)}
                       >
                         <MdDelete />
                       </div>
 
-                      <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1">
-                        {product?.productId?.productName}
-                      </h2>
-                      <p className="capitalize text-slate-500">
-                        {product?.productId.category}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <p className="text-[#14919A] font-medium text-lg">
-                          {displayINRCurrency(product?.productId?.sellingPrice)}
+                      {product?.productId ? (
+                        <>
+                          <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1">
+                            {product?.productId?.productName}
+                          </h2>
+                          <p className="capitalize text-slate-500">
+                            {product?.productId?.category}
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-red-600 font-medium text-lg">
+                              {displayINRCurrency(
+                                product?.productId?.sellingPrice
+                              )}
+                            </p>
+                            <p className="text-slate-600 font-semibold text-lg">
+                              {displayINRCurrency(
+                                product?.productId?.sellingPrice *
+                                  product?.quantity
+                              )}
+                            </p>
+                          </div>
+                        </>
+                      ) : (
+                        <p className="text-slate-500">
+                          Product details unavailable
                         </p>
-                        <p className="text-slate-600 font-semibold text-lg">
-                          {displayINRCurrency(
-                            product?.productId?.sellingPrice * product?.quantity
-                          )}
-                        </p>
-                      </div>
+                      )}
+
                       <div className="flex items-center gap-3 mt-1">
                         <button
-                          className="border border-[#14919A] text-[#14919A] hover:bg-[#14919A] hover:text-white w-6 h-6 flex justify-center items-center rounded "
+                          className="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded"
                           onClick={() =>
                             decraseQty(product?._id, product?.quantity)
                           }
@@ -174,7 +190,7 @@ const Cart = () => {
                         </button>
                         <span>{product?.quantity}</span>
                         <button
-                          className="border border-[#14919A] text-[#14919A] hover:bg-[#14919A] hover:text-white w-6 h-6 flex justify-center items-center rounded "
+                          className="border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded"
                           onClick={() =>
                             increaseQty(product?._id, product?.quantity)
                           }
