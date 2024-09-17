@@ -11,7 +11,6 @@ const Cart = () => {
   const loadingCart = new Array(4).fill(null);
 
   const fetchData = async () => {
-    console.log('before api call addto cart  view hit');
     const response = await fetch(SummaryApi.addToCartProductView.url, {
       method: SummaryApi.addToCartProductView.method,
       credentials: 'include',
@@ -21,8 +20,6 @@ const Cart = () => {
     });
 
     const responseData = await response.json();
-    console.log('after api call addto cart responsedata :', responseData);
-
     if (responseData.success) {
       setData(responseData.data);
     }
@@ -43,8 +40,10 @@ const Cart = () => {
       method: SummaryApi.updateCartProduct.method,
       credentials: 'include',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+
       body: JSON.stringify({
         _id: id,
         quantity: qty + 1,
@@ -64,6 +63,7 @@ const Cart = () => {
         method: SummaryApi.updateCartProduct.method,
         credentials: 'include',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
@@ -85,6 +85,7 @@ const Cart = () => {
       method: SummaryApi.deleteCartProduct.method,
       credentials: 'include',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({
