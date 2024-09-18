@@ -6,14 +6,14 @@ async function authToken(req, res, next) {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1]; // Bearer <token>
 
-    //  const token = req.cookies.token ||  req.body.token || req.header('Authorization').replace('Bearer ', '');
-
-    // const token = req.cookies?.token
+    //  const token = req.cookies?.token ||  req.body.token || req.header('Authorization').replace('Bearer ', '');
 
     console.log('token', token);
-    if (!token) {
-      return res.status(200).json({
-        message: 'Please Login...!',
+
+    // Check if the token is missing, null, or undefined
+    if (!token || token === 'null' || token === 'undefined') {
+      return res.status(401).json({
+        message: 'Token is missing or invalid. Please Login...!',
         error: true,
         success: false,
       });
