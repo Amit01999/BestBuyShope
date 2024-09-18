@@ -13,7 +13,7 @@ async function authToken(req, res, next) {
     // Check if the token is missing, null, or undefined
     if (!token || token === 'null' || token === 'undefined') {
       return res.status(401).json({
-        message: 'Token is missing or invalid. Please Login...!',
+        message: 'Please Login...!',
         error: true,
         success: false,
       });
